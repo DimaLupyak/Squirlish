@@ -15,7 +15,7 @@
            <ShellContent ContentTemplate="{DataTemplate views:LearnPage}" Route="learn"/>
        </Tab>
         <Tab x:Name="CollectionsTab">
-            <ShellContent ContentTemplate="{DataTemplate views:CollectionsPage}" Route="bookmarks"/>
+            <ShellContent ContentTemplate="{DataTemplate views:CollectionsPage}" Route="collections"/>
         </Tab>
     </TabBar>
 </Shell>

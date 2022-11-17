@@ -1,5 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningKeyStore>squirlish.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyAlias>squirlish-key</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass></AndroidSigningKeyPass>
+		<AndroidSigningStorePass></AndroidSigningStorePass>
+		<RuntimeIdentifiers Condition="$(TargetFramework.Contains('-android'))">android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
+	</PropertyGroup>
+	
 	<PropertyGroup>
 		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
@@ -38,7 +47,8 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#477ee5" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#477ee5" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#477ee5" BaseSize="128,128">
+		</MauiSplashScreen>
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -48,30 +58,7 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Remove="Views\" />
-	  <None Remove="ViewModels\" />
-	  <None Remove="Models\" />
-	  <None Remove="Resources\Fonts\NotoSerif-Bold.ttf" />
-	  <None Remove="Resources\Images\Profile.png" />
-	  <None Remove="Resources\Images\Bookmarks.png" />
-	  <None Remove="Resources\Images\Categories.png" />
-	  <None Remove="Resources\Images\Home.png" />
-	  <None Remove="Resources\Images\home.png" />
-	  <None Remove="Resources\Images\categories.png" />
-	  <None Remove="Resources\Images\bookmarks.png" />
-	  <None Remove="Resources\Images\profile.png" />
-	  <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
-	  <None Remove="Resources\Fonts\Poppins-SemiBold.ttf" />
-	  <None Remove="Resources\Fonts\Poppins-Bold.ttf" />
-	  <None Remove="Resources\Fonts\MaterialIconsOutlined-Regular.otf" />
-	  <None Remove="Services\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\Squirlish.Domain\Squirlish.Domain.csproj" />
-	  <Folder Include="Views\" />
-	  <Folder Include="ViewModels\" />
-	</ItemGroup>
+
 	<ItemGroup>
 	  <MauiXaml Update="Platforms\Windows\App.xaml">
 	    <Generator>MSBuild:Compile</Generator>
@@ -102,4 +89,5 @@
 	  <EmbeddedResource Include="Resources\Images\bookmarks.png" />
 	  <EmbeddedResource Include="Resources\Images\profile.png" />
 	</ItemGroup>
+	
 </Project>
