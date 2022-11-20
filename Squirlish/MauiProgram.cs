@@ -1,6 +1,8 @@
-﻿using Squirlish.Views;
+﻿using System.Reflection;
+using MediatR;
+using Squirlish.Domain.Collections;
+using Squirlish.Views;
 using Squirlish.ViewModels;
-
 namespace Squirlish;
 
 public static class MauiProgram
@@ -12,6 +14,7 @@ public static class MauiProgram
 			.UseMauiApp<App>()
 			.RegisterAppServices()
             .RegisterViewModels()
+            
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -28,6 +31,9 @@ public static class MauiProgram
 
     public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
     {
+        mauiAppBuilder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+
+        mauiAppBuilder.Services.AddSingleton<ICollectionsRepository, FakeCollectionsRepository>();
         return mauiAppBuilder;
     }
 

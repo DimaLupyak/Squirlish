@@ -89,5 +89,13 @@
 	  <EmbeddedResource Include="Resources\Images\bookmarks.png" />
 	  <EmbeddedResource Include="Resources\Images\profile.png" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Domain\Collections\UseCases\" />
+	  <Folder Include="Domain\Learn\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="MediatR" Version="11.0.0" />
+	  <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+	</ItemGroup>
 	
 </Project>

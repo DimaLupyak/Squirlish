@@ -1,12 +1,16 @@
-﻿using System;
+﻿using MediatR;
+using Squirlish.Domain.Collections;
+using Squirlish.Domain.Collections.Model;
 
 namespace Squirlish.ViewModels
 {
-	public class CollectionsViewModel
+    public class CollectionsViewModel
 	{
-		public CollectionsViewModel()
-		{
+		public CollectionsViewModel(IMediator mediator)
+        {
+            WordsCollections = mediator.Send(new GetCollectionsRequest()).Result;
         }
-		
+
+        public ICollection<WordsCollection> WordsCollections { get; set; }
     }
 }
