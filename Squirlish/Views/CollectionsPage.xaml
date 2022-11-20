@@ -9,11 +9,10 @@
         <ScrollView>
             <VerticalStackLayout Padding="16">
                 <Label 
-                Text="Choose a Collection to Learn"
+                Text="Opened collections"
                 Margin="0,10,20,10"
-                FontFamily="NotoSerifBold"
-                FontSize="28"/>
-                <FlexLayout BindableLayout.ItemsSource="{Binding WordsCollections}"
+                FontFamily="NotoSerifBold"/>
+                <FlexLayout BindableLayout.ItemsSource="{Binding OpenedCollections}"
                         Direction="Row"
                         Wrap="Wrap"
                         JustifyContent="SpaceEvenly"
@@ -24,7 +23,7 @@
                             <Grid Padding="20,6" VerticalOptions="Center" FlexLayout.Basis="100%">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
                                 <Label Text="{Binding Name}"
                                        FontFamily="PoppinsSemibold"
@@ -34,6 +33,36 @@
                                        Grid.Column="1"
                                        FontFamily="PoppinsSemibold"
                                        FontSize="34"
+                                       HorizontalOptions="Start"/>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+                <Label 
+                    Text="Closed collections"
+                    Margin="0,10,20,10"
+                    FontFamily="NotoSerifBold"/>
+                <FlexLayout BindableLayout.ItemsSource="{Binding ClosedCollections}"
+                            Direction="Row"
+                            Wrap="Wrap"
+                            JustifyContent="SpaceEvenly"
+                            AlignItems="Center"
+                            Margin="0,0">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:WordsCollection">
+                            <Grid Padding="20,6" VerticalOptions="Center" FlexLayout.Basis="100%">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name}"
+                                       FontFamily="PoppinsSemibold"
+                                       FontSize="34"
+                                       HorizontalOptions="Start"/>
+                                <Button Text="Unlock"
+                                       Grid.Column="1"
+                                       FontFamily="PoppinsSemibold"
+                                       
                                        HorizontalOptions="Start"/>
                             </Grid>
                         </DataTemplate>

@@ -4,75 +4,73 @@ namespace Squirlish.Domain.Collections;
 
 public class FakeCollectionsRepository : ICollectionsRepository
 {
-    public Task<ICollection<WordsCollection>> GetAllCollections()
+    private ICollection<WordsCollection> WordsCollections { get; set; } = new List<WordsCollection>
     {
-        return Task.FromResult<ICollection<WordsCollection>>(
-                new List<WordsCollection> {
-                    new()
+        new()
+        {
+            Name = "Basic",
+            IsOpened = true,
+            Words = new List<Word>
+            {
+                new()
+                {
+                    Translations = new List<WordTranslation>
                     {
-                        Name = "Answers",
-                        Words = new List<Word>{
-                            new()
-                            { 
-                                Translations = new List<WordTranslation>
-                                {
-                                    new(){Language = Language.Ukrainian, Meaning = "так"},
-                                    new(){Language = Language.English, Meaning = "yes"}
-                                }
-
-                            },
-                            new()
-                            {
-                                Translations = new List<WordTranslation>
-                                {
-                                    new(){Language = Language.Ukrainian, Meaning = "ні"},
-                                    new(){Language = Language.English, Meaning = "no"}
-                                }
-
-                            },
-                            new()
-                            {
-                                Translations = new List<WordTranslation>
-                                {
-                                    new(){Language = Language.Ukrainian, Meaning = "можливо"},
-                                    new(){Language = Language.English, Meaning = "maybe"}
-                                }
-                            }
-                        }
-
-                    },
-                    new()
+                        new() { Language = Language.Ukrainian, Meaning = "так" },
+                        new() { Language = Language.English, Meaning = "yes" }
+                    }
+                },
+                new()
+                {
+                    Translations = new List<WordTranslation>
                     {
-                        Name = "Family",
-                        Words = new List<Word>{
-                            new()
-                            {
-                                Translations = new List<WordTranslation>
-                                {
-                                    new(){Language = Language.Ukrainian, Meaning = "мати"},
-                                    new(){Language = Language.Ukrainian, Meaning = "матір"},
-                                    new(){Language = Language.Ukrainian, Meaning = "мама"},
-                                    new(){Language = Language.English, Meaning = "mather"},
-                                    new(){Language = Language.English, Meaning = "mom"}
-                                }
-
-                            },
-                            new()
-                            {
-                                Translations = new List<WordTranslation>
-                                {
-                                    new(){Language = Language.Ukrainian, Meaning = "тато"},
-                                    new(){Language = Language.Ukrainian, Meaning = "татусь"},
-                                    new(){Language = Language.English, Meaning = "father"},
-                                    new(){Language = Language.English, Meaning = "dad"}
-
-                                }
-
-                            }
-                        }
-
+                        new() { Language = Language.Ukrainian, Meaning = "ні" },
+                        new() { Language = Language.English, Meaning = "no" }
+                    }
+                },
+                new()
+                {
+                    Translations = new List<WordTranslation>
+                    {
+                        new() { Language = Language.Ukrainian, Meaning = "можливо" },
+                        new() { Language = Language.English, Meaning = "maybe" }
                     }
                 }
-        );
+            }
+        },
+        new()
+        {
+            Name = "Family",
+            IsOpened = false,
+            Words = new List<Word>
+            {
+                new()
+                {
+                    Translations = new List<WordTranslation>
+                    {
+                        new() { Language = Language.Ukrainian, Meaning = "мати" },
+                        new() { Language = Language.Ukrainian, Meaning = "матір" },
+                        new() { Language = Language.Ukrainian, Meaning = "мама" },
+                        new() { Language = Language.English, Meaning = "mather" },
+                        new() { Language = Language.English, Meaning = "mom" }
+                    }
+                },
+                new()
+                {
+                    Translations = new List<WordTranslation>
+                    {
+                        new() { Language = Language.Ukrainian, Meaning = "тато" },
+                        new() { Language = Language.Ukrainian, Meaning = "татусь" },
+                        new() { Language = Language.English, Meaning = "father" },
+                        new() { Language = Language.English, Meaning = "dad" }
+                    }
+                }
+            }
+        }
+    };
+
+    public Task<ICollection<WordsCollection>> GetAllCollections()
+    {
+        return Task.FromResult(WordsCollections);
     }
 }

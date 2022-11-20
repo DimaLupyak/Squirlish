@@ -12,5 +12,7 @@ namespace Squirlish.ViewModels
         }
 
         public ICollection<WordsCollection> WordsCollections { get; set; }
+        public ICollection<WordsCollection> OpenedCollections => WordsCollections.Where(c => c.IsOpened).ToArray();
+        public ICollection<WordsCollection> ClosedCollections => WordsCollections.Where(c => !c.IsOpened).ToArray();
     }
 }
