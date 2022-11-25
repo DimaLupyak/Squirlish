@@ -5,11 +5,6 @@
              x:Class="Squirlish.Views.HomePage"
              Title="Home">
     <ContentPage.Content>
-        <Grid>
-            <Label Text="Home"
-                   HorizontalOptions="Center"
-                   TextColor="Purple"
-                   VerticalOptions="Center"/>
-        </Grid>
+        <Label>Home</Label>
     </ContentPage.Content>
 </ContentPage>

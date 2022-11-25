@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using CommunityToolkit.Maui;
 using MediatR;
 using Squirlish.Domain.Collections;
 using Squirlish.Views;
@@ -12,6 +13,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
 			.RegisterAppServices()
             .RegisterViewModels()
             

@@ -2,75 +2,34 @@
 
 namespace Squirlish.Domain.Collections;
 
-public class FakeCollectionsRepository : ICollectionsRepository
+public partial class FakeCollectionsRepository : ICollectionsRepository
 {
-    private ICollection<WordsCollection> WordsCollections { get; set; } = new List<WordsCollection>
-    {
-        new()
-        {
-            Name = "Basic",
-            IsOpened = true,
-            Words = new List<Word>
-            {
-                new()
-                {
-                    Translations = new List<WordTranslation>
-                    {
-                        new() { Language = Language.Ukrainian, Meaning = "так" },
-                        new() { Language = Language.English, Meaning = "yes" }
-                    }
-                },
-                new()
-                {
-                    Translations = new List<WordTranslation>
-                    {
-                        new() { Language = Language.Ukrainian, Meaning = "ні" },
-                        new() { Language = Language.English, Meaning = "no" }
-                    }
-                },
-                new()
-                {
-                    Translations = new List<WordTranslation>
-                    {
-                        new() { Language = Language.Ukrainian, Meaning = "можливо" },
-                        new() { Language = Language.English, Meaning = "maybe" }
-                    }
-                }
-            }
-        },
-        new()
-        {
-            Name = "Family",
-            IsOpened = false,
-            Words = new List<Word>
-            {
-                new()
-                {
-                    Translations = new List<WordTranslation>
-                    {
-                        new() { Language = Language.Ukrainian, Meaning = "мати" },
-                        new() { Language = Language.Ukrainian, Meaning = "матір" },
-                        new() { Language = Language.Ukrainian, Meaning = "мама" },
-                        new() { Language = Language.English, Meaning = "mather" },
-                        new() { Language = Language.English, Meaning = "mom" }
-                    }
-                },
-                new()
-                {
-                    Translations = new List<WordTranslation>
-                    {
-                        new() { Language = Language.Ukrainian, Meaning = "тато" },
-                        new() { Language = Language.Ukrainian, Meaning = "татусь" },
-                        new() { Language = Language.English, Meaning = "father" },
-                        new() { Language = Language.English, Meaning = "dad" }
-                    }
-                }
-            }
-        }
-    };
-
     public Task<ICollection<WordsCollection>> GetAllCollections()
     {
         return Task.FromResult(WordsCollections);
+    }
+
+    public Task<Word> GetWordToLearn()
+    {
+        var rnd = new Random();
+        return Task.FromResult(WordsCollections
+                .Where(wordsCollection => wordsCollection.IsOpened && wordsCollection.IsActive)
+                .SelectMany(wordsCollection => wordsCollection.Words)
+                .OrderBy(_ => rnd.Next())
+                .FirstOrDefault(word => word.Translations
+                    .Any(wordTranslation => word.LearningProgress
+                        .All(progressItem => progressItem.From != wordTranslation.Language))));
+    }
+
+    public void MarkWordAsLearned(string id, Language requestFromLanguage, Language requestToLanguage)
+    {
+        WordsCollections.SelectMany(x => x.Words)
+            .First(w => w.Id == id).LearningProgress.Add(new LearningProgressItem(requestFromLanguage, requestToLanguage));
+    }
+
+    public void UnlockCollection(string id)
+    {
+        var collection = WordsCollections.First(x => x.Id == id);
+        collection.IsOpened = true;
     }
 }

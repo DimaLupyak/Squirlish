@@ -3,13 +3,56 @@
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Squirlish.Views"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="Learn">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding RefreshCommand}" />
+    </ContentPage.Behaviors>
     <ContentPage.Content>
         <Grid>
-            <Label Text="Learn"
-                   HorizontalOptions="Center"
-                   TextColor="Purple"
-                   VerticalOptions="Center"/>
+            <Grid Padding="20,6" VerticalOptions="Center" FlexLayout.Basis="100%" IsVisible="{Binding WordToLearn.WordExists}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Label Text="{Binding WordToLearn.Original}"
+                       FontFamily="PoppinsSemibold"
+                       FontSize="34"
+                       HorizontalOptions="Center"/>
+                <Editor Grid.Row="1"
+                        Text="{Binding Translation, Mode=TwoWay}"
+                        HorizontalOptions="Center"
+                        MinimumWidthRequest="100"
+                        HorizontalTextAlignment="Center"/>
+                <Grid Grid.Row="2" 
+                      Padding="20,6" VerticalOptions="Center" FlexLayout.Basis="100%">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Підказка"  Command="{Binding GetHintCommand}"/>
+                    <Button Text="Перевірити" Grid.Column="1"  Command="{Binding CheckTranslationCommand}"/>
+                </Grid>
+            </Grid>
+            <Grid IsVisible="{Binding WordToLearn.WordExists, Converter={StaticResource InvertedBoolConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Label Text="Вітаю! Ви вивчили всі доступні слова."
+                       FontFamily="PoppinsSemibold"
+                       FontSize="34"
+                       HorizontalOptions="Center"/>
+                <Button Grid.Row="1" Text="Колекції"  Command="{Binding GoToCollectionCommand}"/>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
