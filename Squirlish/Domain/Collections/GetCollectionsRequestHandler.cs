@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Squirlish.Data;
 using Squirlish.Domain.Collections.Model;
 
 namespace Squirlish.Domain.Collections;

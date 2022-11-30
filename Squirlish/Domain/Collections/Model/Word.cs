@@ -2,14 +2,14 @@
 
 public record Word
 {
-    public string Id { get; init; } = Guid.NewGuid().ToString();
-    public ICollection<WordTranslation> Translations { get; set; }
-    public LearningProgress LearningProgress { get; set; } = new();
+    public string WordId { get; set; } = Guid.NewGuid().ToString();
+    public string WordsCollectionId { get; set; }
+    public WordsCollection WordsCollection { get; set; }
+
+    public List<WordTranslation> Translations { get; set; }
+    public List<LearningProgressItem> LearningProgress { get; set; } = new();
 }
 
-public class LearningProgress : List<LearningProgressItem>
-{
-}   
 
 public class LearningProgressItem
 {
@@ -19,7 +19,9 @@ public class LearningProgressItem
         To = to;
         LearnedTime = DateTime.Now;
     }
-
+    public string LearningProgressItemId { get; set; } = Guid.NewGuid().ToString();
+    public string WordId { get; set; }
+    public Word Word { get; set; }
     public Language From { get; set; }
     public Language To { get; set; }
     public DateTime LearnedTime { get; set; }

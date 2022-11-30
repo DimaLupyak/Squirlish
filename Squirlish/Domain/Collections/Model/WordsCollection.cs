@@ -2,9 +2,9 @@
 
 public class WordsCollection
 {
-    public string Id { get; init; } = Guid.NewGuid().ToString();
+    public string WordsCollectionId { get; set; } = Guid.NewGuid().ToString();
     public string Name { get; set; }
-    public ICollection<Word> Words { get; set; }
+    public List<Word> Words { get; set; }
     public bool IsOpened { get; set; }
     public bool IsActive { get; set; } = true;
 }

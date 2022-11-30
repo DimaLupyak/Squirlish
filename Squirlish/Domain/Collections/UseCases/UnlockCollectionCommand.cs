@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Squirlish.Data;
 using Squirlish.Domain.Collections.Model;
 
 namespace Squirlish.Domain.Collections.UseCases;
@@ -26,7 +27,7 @@ public class UnlockCollectionCommandHandler : IRequestHandler<UnlockCollectionCo
 
     public async Task<Unit> Handle(UnlockCollectionCommand request, CancellationToken cancellationToken)
     {
-        _collectionsRepository.UnlockCollection(request.CollectionToUnlock.Id);
+        _collectionsRepository.UnlockCollection(request.CollectionToUnlock.WordsCollectionId);
         return Unit.Value;
     }
 }

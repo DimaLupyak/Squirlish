@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Squirlish.Domain.Collections;
+using Squirlish.Data;
 
 namespace Squirlish.Domain.Learn;
 
@@ -15,7 +15,7 @@ public class MarkWordAsLearnedCommandHandler : IRequestHandler<MarkWordAsLearned
 
     public async Task<Unit> Handle(MarkWordAsLearnedCommand request, CancellationToken cancellationToken)
     {
-        _collectionsRepository.MarkWordAsLearned(request.Word.Id, request.FromLanguage, request.ToLanguage);
+        _collectionsRepository.MarkWordAsLearned(request.Word.WordId, request.FromLanguage, request.ToLanguage);
         return Unit.Value;
     }
 }
