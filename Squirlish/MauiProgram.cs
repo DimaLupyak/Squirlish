@@ -5,6 +5,7 @@ using Squirlish.Domain.Collections;
 using Squirlish.Views;
 using Squirlish.ViewModels;
 using Squirlish.Data;
+using Squirlish.Data.Repositories;
 
 namespace Squirlish;
 
@@ -41,6 +42,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
         mauiAppBuilder.Services.AddSingleton<ICollectionsRepository, CollectionsRepository>();
+        mauiAppBuilder.Services.AddSingleton<IInventory, Inventory>();
         return mauiAppBuilder;
     }
 

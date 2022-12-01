@@ -2,12 +2,15 @@
 using Squirlish.Domain.Collections;
 using Squirlish.Domain.Collections.Model;
 using Squirlish.Domain.Collections.UseCases;
+using Squirlish.Domain.Inventory.Model;
+using Squirlish.Domain.Inventory.UseCases;
 
 namespace Squirlish.ViewModels
 {
     public class CollectionsViewModel : BaseViewModel
 	{
         private readonly IMediator _mediator;
+        
 
         public CollectionsViewModel(IMediator mediator)
         {
@@ -17,6 +20,12 @@ namespace Squirlish.ViewModels
             Refresh();
         }
 
+        private int _acornsAmount;
+        public int AcornsAmount
+        {
+            get => _acornsAmount;
+            set => SetField(ref _acornsAmount, value);
+        }
 
         public ICollection<WordsCollection> WordsCollections { get; set; }
         public ICollection<WordsCollection> OpenedCollections => WordsCollections.Where(c => c.IsOpened).ToArray();
@@ -28,6 +37,7 @@ namespace Squirlish.ViewModels
         private void Refresh()
         {
             WordsCollections = _mediator.Send(new GetCollectionsRequest()).Result;
+            AcornsAmount = _mediator.Send(new GetInventoryItemAmountRequest(InventoryItemType.Acorn)).Result;
             OnPropertyChanged(nameof(OpenedCollections));
             OnPropertyChanged(nameof(ClosedCollections));
         }

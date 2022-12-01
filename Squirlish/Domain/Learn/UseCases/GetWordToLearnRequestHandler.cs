@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Squirlish.Data;
+using Squirlish.Data.Repositories;
 using Squirlish.Domain.Collections.Model;
 
-namespace Squirlish.Domain.Learn;
+namespace Squirlish.Domain.Learn.UseCases;
 
 public class GetWordToLearnRequestHandler : IRequestHandler<GetWordToLearnRequest, Word>
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Squirlish.Domain.Collections.Model;
 
-namespace Squirlish.Data;
+namespace Squirlish.Data.Repositories;
 
 public class CollectionsRepository : BaseCollectionsRepository
 {
@@ -15,6 +15,9 @@ public class CollectionsRepository : BaseCollectionsRepository
 
     public override Task<List<WordsCollection>> GetAllCollections()
     {
+        var a = _dbContext.Words.ToList();
+        var b = _dbContext.WordTranslations.ToList();
+        var c = _dbContext.LearningProgress.ToList();
         return _dbContext.WordsCollections.ToListAsync();
     }
 

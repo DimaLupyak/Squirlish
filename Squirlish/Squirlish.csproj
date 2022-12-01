@@ -88,6 +88,7 @@
 	  <EmbeddedResource Include="Resources\Images\categories.png" />
 	  <EmbeddedResource Include="Resources\Images\bookmarks.png" />
 	  <EmbeddedResource Include="Resources\Images\profile.png" />
+	  <EmbeddedResource Include="Resources\Images\acorn.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Maui" Version="2.0.0" />

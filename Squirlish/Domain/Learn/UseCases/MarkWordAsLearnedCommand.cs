@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Squirlish.Domain.Collections.Model;
 
-namespace Squirlish.Domain.Learn;
+namespace Squirlish.Domain.Learn.UseCases;
 
-public class MarkWordAsLearnedCommand: IRequest
+public class MarkWordAsLearnedCommand : IRequest
 {
     public Word Word { get; }
     public Language FromLanguage { get; }

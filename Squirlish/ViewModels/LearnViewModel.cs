@@ -1,8 +1,7 @@
 ﻿using MediatR;
-using System;
-using System.Globalization;
-using Squirlish.Domain.Collections.Model;
-using Squirlish.Domain.Learn;
+using Squirlish.Domain.Inventory.Model;
+using Squirlish.Domain.Inventory.UseCases;
+using Squirlish.Domain.Learn.UseCases;
 
 namespace Squirlish.ViewModels
 {
@@ -20,6 +19,12 @@ namespace Squirlish.ViewModels
             RefreshCommand = new Command(Refresh);
 
             Refresh();
+        }
+        private int _acornsAmount;
+        public int AcornsAmount
+        {
+            get => _acornsAmount;
+            set => SetField(ref _acornsAmount, value);
         }
 
         private WordToLearnViewModel _wordToLearn;
@@ -44,6 +49,7 @@ namespace Squirlish.ViewModels
 
         private void Refresh()
         {
+            AcornsAmount = _mediator.Send(new GetInventoryItemAmountRequest(InventoryItemType.Acorn)).Result;
             WordToLearn = new WordToLearnViewModel(_mediator.Send(new GetWordToLearnRequest()).Result);
             Translation = string.Empty;
         }
@@ -56,6 +62,7 @@ namespace Squirlish.ViewModels
                 _mediator.Send(new MarkWordAsLearnedCommand(WordToLearn.Word, WordToLearn.FromLanguage, WordToLearn.ToLanguage));
                 WordToLearn = new WordToLearnViewModel(_mediator.Send(new GetWordToLearnRequest()).Result);
                 Translation = string.Empty;
+                AcornsAmount = _mediator.Send(new GetInventoryItemAmountRequest(InventoryItemType.Acorn)).Result;
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿using Squirlish.Domain.Collections.Model;
 
-namespace Squirlish.Data;
+namespace Squirlish.Data.Repositories;
 
 public abstract class BaseCollectionsRepository : ICollectionsRepository
 {

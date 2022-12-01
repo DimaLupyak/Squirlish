@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Squirlish.Data;
+using Squirlish.Data.Repositories;
 using Squirlish.Domain.Collections.Model;
 
-namespace Squirlish.Domain.Collections;
+namespace Squirlish.Domain.Collections.UseCases;
 
 public class GetCollectionsRequestHandler : IRequestHandler<GetCollectionsRequest, ICollection<WordsCollection>>
 {

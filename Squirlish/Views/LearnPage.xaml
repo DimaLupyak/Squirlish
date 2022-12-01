@@ -17,41 +17,58 @@
     </ContentPage.Behaviors>
     <ContentPage.Content>
         <Grid>
-            <Grid Padding="20,6" VerticalOptions="Center" FlexLayout.Basis="100%" IsVisible="{Binding WordToLearn.WordExists}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
-                <Label Text="{Binding WordToLearn.Original}"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Orientation="Horizontal" Grid.Column="1">
+                    <Label Text="{Binding AcornsAmount}" Margin="0, 0" 
+                           FontFamily="PoppinsSemibold" FontSize="40"></Label>
+                    <Image Source="acorn.png" HeightRequest="40" Margin="0,0,0,15"></Image>
+                </StackLayout>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid Padding="20,6" VerticalOptions="Center" FlexLayout.Basis="100%" IsVisible="{Binding WordToLearn.WordExists}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Label Text="{Binding WordToLearn.Original}"
                        FontFamily="PoppinsSemibold"
                        FontSize="34"
                        HorizontalOptions="Center"/>
-                <Editor Grid.Row="1"
+                    <Editor Grid.Row="1"
                         Text="{Binding Translation, Mode=TwoWay}"
                         HorizontalOptions="Center"
                         MinimumWidthRequest="100"
                         HorizontalTextAlignment="Center"/>
-                <Grid Grid.Row="2" 
+                    <Grid Grid.Row="2" 
                       Padding="20,6" VerticalOptions="Center" FlexLayout.Basis="100%">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Button Text="Підказка"  Command="{Binding GetHintCommand}"/>
-                    <Button Text="Перевірити" Grid.Column="1"  Command="{Binding CheckTranslationCommand}"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Text="Підказка"  Command="{Binding GetHintCommand}"/>
+                        <Button Text="Перевірити" Grid.Column="1"  Command="{Binding CheckTranslationCommand}"/>
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid IsVisible="{Binding WordToLearn.WordExists, Converter={StaticResource InvertedBoolConverter}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
-                <Label Text="Вітаю! Ви вивчили всі доступні слова."
+                <Grid IsVisible="{Binding WordToLearn.WordExists, Converter={StaticResource InvertedBoolConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Label Text="Вітаю! Ви вивчили всі доступні слова."
                        FontFamily="PoppinsSemibold"
                        FontSize="34"
                        HorizontalOptions="Center"/>
-                <Button Grid.Row="1" Text="Колекції"  Command="{Binding GoToCollectionCommand}"/>
+                    <Button Grid.Row="1" Text="Колекції"  Command="{Binding GoToCollectionCommand}"/>
+                </Grid>
             </Grid>
         </Grid>
     </ContentPage.Content>
