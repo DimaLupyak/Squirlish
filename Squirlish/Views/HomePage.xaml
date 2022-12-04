@@ -2,9 +2,40 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Squirlish.ViewModels"
+             xmlns:model="clr-namespace:Squirlish.Domain.Statistic.Model"
              x:Class="Squirlish.Views.HomePage"
-             Title="Home">
+             Title="Статистика">
     <ContentPage.Content>
-        <Label>Home</Label>
+        <ScrollView>
+            <VerticalStackLayout Padding="16">
+                <FlexLayout BindableLayout.ItemsSource="{Binding Statistic}"
+                            Direction="Row"
+                            Wrap="Wrap"
+                            JustifyContent="SpaceEvenly"
+                            AlignItems="Center"
+                            Margin="0,0">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="model:StatisticItem">
+                            <Grid Padding="5,5" VerticalOptions="Center" FlexLayout.Basis="100%">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name}"
+                                       FontFamily="PoppinsSemibold"
+                                       FontSize="24"
+                                       HorizontalOptions="Start"/>
+                                <Label Text="{Binding Value}"
+                                       Grid.Column="1"
+                                       FontSize="24"
+                                       FontFamily="PoppinsSemibold"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalOptions="Start"/>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </VerticalStackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

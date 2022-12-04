@@ -18,7 +18,8 @@ namespace Squirlish.Data
         public DatabaseContext(IPath path, DbContextOptions<DatabaseContext> options)
             : base(options)
         {
-            _path = path;
+            _path = path; 
+            //SQLitePCL.Batteries_V2.Init();  //for iOS
             //_path.DeleteFile(_path.GetDatabasePath());
             Database.EnsureCreated();
 
@@ -33,7 +34,8 @@ namespace Squirlish.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlite($"Filename={_path.GetDatabasePath()}");
+            var dbPath = Path.Combine(_path.GetDatabasePath());
+            optionsBuilder.UseSqlite($"Filename={dbPath}");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

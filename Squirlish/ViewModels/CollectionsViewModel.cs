@@ -8,9 +8,9 @@ using Squirlish.Domain.Inventory.UseCases;
 namespace Squirlish.ViewModels
 {
     public class CollectionsViewModel : BaseViewModel
-	{
+    {
         private readonly IMediator _mediator;
-        
+
 
         public CollectionsViewModel(IMediator mediator)
         {

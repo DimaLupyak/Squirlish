@@ -8,8 +8,17 @@ namespace Squirlish.Views
         public CollectionsPage(IMediator mediator)
         {
             InitializeComponent();
+            try
+            {
+                this.BindingContext = new CollectionsViewModel(mediator);
+            }
 
-            this.BindingContext = new CollectionsViewModel(mediator);
+            catch (Exception e)
+            {
+
+                this.Title = e.ToString();
+                Label.Text = e.ToString();
+            }
         }
     }
 }

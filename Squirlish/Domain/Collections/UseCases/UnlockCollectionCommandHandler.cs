@@ -1,5 +1,4 @@
-﻿using Android.Accounts;
-using MediatR;
+﻿using MediatR;
 using Squirlish.Data.Repositories;
 using Squirlish.Domain.Inventory.Model;
 
