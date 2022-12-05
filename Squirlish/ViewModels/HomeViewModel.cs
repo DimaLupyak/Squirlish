@@ -12,6 +12,13 @@ namespace Squirlish.ViewModels
         public HomeViewModel(IMediator mediator)
         {
             _mediator = mediator;
+            RefreshCommand = new Command(Refresh);
+            Refresh();
+        }
+        public Command RefreshCommand { get; set; }
+
+        public void Refresh()
+        {
             Statistic = _mediator.Send(new GetStatisticRequest()).Result;
         }
 
