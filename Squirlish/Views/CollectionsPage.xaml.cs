@@ -10,7 +10,7 @@ namespace Squirlish.Views
             InitializeComponent();
             try
             {
-                this.BindingContext = new CollectionsViewModel(mediator);
+                this.BindingContext = new CollectionsViewModel(mediator, this);
             }
 
             catch (Exception e)

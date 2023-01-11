@@ -1,6 +1,6 @@
 ﻿namespace Squirlish.Domain.Collections.Model;
 
-public record WordTranslation
+public class WordTranslation
 {
     public string WordTranslationId { get; init; } = Guid.NewGuid().ToString();
     public string WordId { get; set; }

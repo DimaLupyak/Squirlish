@@ -21,4 +21,6 @@ public abstract class BaseCollectionsRepository : ICollectionsRepository
     public abstract void MarkWordAsLearned(string id, Language requestFromLanguage, Language requestToLanguage);
 
     public abstract void UnlockCollection(string id);
+    public abstract void Add(WordsCollection wordsCollection);
+    public abstract void AddWord(Word requestWord);
 }

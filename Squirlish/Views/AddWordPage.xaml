@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Squirlish.Views.AddWordPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Horizontal"  Grid.Row="0">
+                <Label>Англійською:</Label>
+                <Editor Text="{Binding WordEnglish, Mode=TwoWay}"
+                        HorizontalOptions="Center"
+                        MinimumWidthRequest="100"
+                        HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"  Grid.Row="1">
+                <Label>Українською:</Label>
+                <Editor Text="{Binding WordUkrainian, Mode=TwoWay}"
+                        HorizontalOptions="Center"
+                        MinimumWidthRequest="100"
+                        HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <Button Text="Додати" Grid.Row="3"  Command="{Binding AddWordCommand}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

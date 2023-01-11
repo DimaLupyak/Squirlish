@@ -8,4 +8,6 @@ public interface ICollectionsRepository
     Task<Word> GetWordToLearn();
     void MarkWordAsLearned(string id, Language requestFromLanguage, Language requestToLanguage);
     void UnlockCollection(string id);
+    void Add(WordsCollection wordsCollection);
+    void AddWord(Word requestWord);
 }

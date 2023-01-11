@@ -4,7 +4,7 @@ public record WordsCollection
 {
     public string WordsCollectionId { get; set; } = Guid.NewGuid().ToString();
     public string Name { get; set; }
-    public List<Word> Words { get; set; }
+    public List<Word> Words { get; set; } = new();
     public int Price { get; set; } = 100;
     public bool IsOpened { get; set; }
     public bool IsActive { get; set; } = true;

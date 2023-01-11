@@ -1,0 +1,48 @@
+﻿Name: "Цифри"
+Price: 150
+Words:
+- Translations:
+  - Language: Ukrainian
+    Meaning: один
+  - Language: English
+    Meaning: one
+- Translations:
+  - Language: Ukrainian
+    Meaning: два
+  - Language: English
+    Meaning: two
+- Translations:
+  - Language: Ukrainian
+    Meaning: три
+  - Language: English
+    Meaning: three
+- Translations:
+  - Language: Ukrainian
+    Meaning: чотири
+  - Language: English
+    Meaning: four
+- Translations:
+  - Language: Ukrainian
+    Meaning: п'ять
+  - Language: English
+    Meaning: five
+- Translations:
+  - Language: Ukrainian
+    Meaning: шість
+  - Language: English
+    Meaning: six
+- Translations:
+  - Language: Ukrainian
+    Meaning: сім
+  - Language: English
+    Meaning: seven
+- Translations:
+  - Language: Ukrainian
+    Meaning: вісім
+  - Language: English
+    Meaning: eight
+- Translations:
+  - Language: Ukrainian
+    Meaning: дев'ять
+  - Language: English
+    Meaning: nine

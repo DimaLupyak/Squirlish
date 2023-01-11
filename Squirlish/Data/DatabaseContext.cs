@@ -1,7 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Java.Util;
+using Microsoft.EntityFrameworkCore;
 using Squirlish.Data.EntityConfigurations;
 using Squirlish.Domain.Collections.Model;
 using Squirlish.Domain.Inventory.Model;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace Squirlish.Data
 {
@@ -27,8 +30,31 @@ namespace Squirlish.Data
             if (collection == null)
             {
                 WordsCollections.AddRange(Repositories.FakeCollectionsRepository.WordsCollections);
-                SaveChanges();
             }
+            WordsCollections.AddRange(ReadCollectionsFromAsset().Result
+                .Where(x => WordsCollections.All(y => y.Name!= x.Name)));
+            SaveChanges();
+        }
+
+        private async Task<List<WordsCollection>> ReadCollectionsFromAsset()
+        {
+            var collections = new List<WordsCollection>();
+            var collectionFiles = await LoadMauiAsset("CollectionsList.txt");
+            foreach (var file in collectionFiles.Replace("\r\n", "\n").Split("\n"))       
+            {
+                var fileData = await LoadMauiAsset($"Collections/{file}.yaml");
+                var deserializer = new DeserializerBuilder().Build();
+                collections.Add(deserializer.Deserialize<WordsCollection>(fileData)); 
+            }
+
+            return collections;
+        }
+
+        async Task<string> LoadMauiAsset(string path)
+        {
+            await using var stream = await FileSystem.OpenAppPackageFileAsync(path);
+            using var reader = new StreamReader(stream);
+            return reader.ReadToEnd();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

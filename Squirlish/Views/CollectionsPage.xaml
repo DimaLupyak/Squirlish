@@ -17,6 +17,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -25,16 +26,15 @@
                 </Grid.ColumnDefinitions>
                 <StackLayout Orientation="Horizontal" Grid.Column="1">
                     <Label Text="{Binding AcornsAmount}" Margin="0, 0" 
-                           FontFamily="PoppinsSemibold" FontSize="40"></Label>
+                           FontSize="40"></Label>
                     <Image Source="acorn.png" HeightRequest="40" Margin="0,0,0,15"></Image>
                 </StackLayout>
             </Grid>
             <ScrollView Grid.Row="1">
                 <VerticalStackLayout Padding="16">
                     <Label x:Name="Label"
-                           Text="Opened collections"
+                           Text="Відкрито"
                            Margin="0,10,20,10"
-                           FontFamily="NotoSerifBold"
                            LineBreakMode="WordWrap"/>
                     <FlexLayout BindableLayout.ItemsSource="{Binding OpenedCollections}"
                         Direction="Row"
@@ -51,17 +51,20 @@
                                         <ColumnDefinition Width="auto" />
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{Binding Name}"
-                                       FontFamily="PoppinsSemibold"
-                                       FontSize="34"
-                                       HorizontalOptions="Start"/>
+                                       HorizontalOptions="Start">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CollectionsViewModel}}, Path=OpenCollectionCommand}"
+                                                CommandParameter="{Binding .}"
+                                                NumberOfTapsRequired="2" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
                                     <Label Text="{Binding Words.Count}"
                                        Grid.Column="1"
-                                       FontFamily="PoppinsSemibold"
                                        VerticalTextAlignment="Center"
                                        HorizontalOptions="Start"/>
                                     <Label Text=" words"
                                            Grid.Column="2"
-                                           FontFamily="PoppinsSemibold"
                                            VerticalTextAlignment="Center"
                                            HorizontalOptions="Start"/>
                                 </Grid>
@@ -69,9 +72,8 @@
                         </BindableLayout.ItemTemplate>
                     </FlexLayout>
                     <Label 
-                    Text="Closed collections"
-                    Margin="0,10,20,10"
-                    FontFamily="NotoSerifBold"/>
+                    Text="Закрито"
+                    Margin="0,10,20,10"/>
                     <FlexLayout BindableLayout.ItemsSource="{Binding ClosedCollections}"
                             Direction="Row"
                             Wrap="Wrap"
@@ -88,14 +90,11 @@
                                         <ColumnDefinition Width="auto" />
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{Binding Name}"
-                                       FontFamily="PoppinsSemibold"
-                                       FontSize="28"
                                        HorizontalOptions="Start"/>
-                                    <Label Grid.Column="1" FontFamily="PoppinsSemibold" Text="{Binding Price}" VerticalTextAlignment="Center"></Label>
+                                    <Label Grid.Column="1"  Text="{Binding Price}" VerticalTextAlignment="Center"></Label>
                                     <Image Grid.Column="2" Source="acorn.png" HeightRequest="20" Margin="0,0,0,5"></Image>
                                     <Button Text="Unlock"
                                        Grid.Column="3"
-                                       FontFamily="PoppinsSemibold"
                                        HorizontalOptions="Start"
                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CollectionsViewModel}}, Path=UnlockCollectionCommand}"
                                        CommandParameter="{Binding .}">
@@ -106,6 +105,7 @@
                     </FlexLayout>
                 </VerticalStackLayout>
             </ScrollView>
+            <Button Grid.Row="2" Text="Додати колекцію"  Command="{Binding AddCollectionCommand}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

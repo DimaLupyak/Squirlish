@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Squirlish.Views.AddCollectionPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Horizontal">
+                <Label>Назва набору:</Label>
+                <Editor Text="{Binding CollectionName, Mode=TwoWay}"
+                        HorizontalOptions="Center"
+                        MinimumWidthRequest="100"
+                        HorizontalTextAlignment="Center"/>
+            </StackLayout>
+
+            <Button Text="Додати" Grid.Row="2"  Command="{Binding AddCollectionCommand}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

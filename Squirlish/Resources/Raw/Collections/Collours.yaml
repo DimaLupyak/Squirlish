@@ -1,0 +1,33 @@
+﻿Name: "Кольори"
+
+Price: 50
+Words:
+- Translations:
+  - Language: Ukrainian
+    Meaning: білий
+  - Language: English
+    Meaning: white
+- Translations:
+  - Language: Ukrainian
+    Meaning: червоний
+  - Language: English
+    Meaning: red
+- Translations:
+  - Language: Ukrainian
+    Meaning: синій
+  - Language: English
+    Meaning: blue
+- Translations:
+  - Language: Ukrainian
+    Meaning: помаранчемий
+  - Language: Ukrainian
+    Meaning: оранжевий
+  - Language: Ukrainian
+    Meaning: жовтогарячий
+  - Language: English
+    Meaning: orange
+- Translations:
+  - Language: Ukrainian
+    Meaning: жовтий
+  - Language: English
+    Meaning: yellow

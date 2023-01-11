@@ -23,15 +23,21 @@ public class GetCollectionsRequestHandler : IRequestHandler<GetStatisticRequest,
 
         return new List<StatisticItem>
         {
+            new() { Name = "Слів доступно", Value = $"{GetCountOfWords(collections)}" },
             new() { Name = "Слів відкрито", Value = $"{GetCountOfOpenedWords(collections)}" },
             new() { Name = "Слів вивчено", Value = $"{GetCountOfLearnedWords(collections)}" },
             new() { Name = "Слів частково вивчено", Value = $"{GetCountOfPartiallyLearnedWords(collections)}" }
         };
     }
 
-    private static int GetCountOfOpenedWords(ICollection<WordsCollection> collections)
+    private static int GetCountOfWords(ICollection<WordsCollection> collections)
     {
         return collections.SelectMany(x => x.Words).Count();
+    }
+
+    private static int GetCountOfOpenedWords(ICollection<WordsCollection> collections)
+    {
+        return collections.Where(x => x.IsOpened).SelectMany(x => x.Words).Count();
     }
 
     private static int GetCountOfLearnedWords(ICollection<WordsCollection> collections)

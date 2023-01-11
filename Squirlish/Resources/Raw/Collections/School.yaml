@@ -1,0 +1,32 @@
+﻿Name: "Школа"
+Price: 50
+Words:
+- Translations:
+  - Language: Ukrainian
+    Meaning: школа
+  - Language: English
+    Meaning: school
+- Translations:
+  - Language: Ukrainian
+    Meaning: урок
+  - Language: English
+    Meaning: lesson
+- Translations:
+  - Language: Ukrainian
+    Meaning: вчитель
+  - Language: English
+    Meaning: teacher
+- Translations:
+  - Language: Ukrainian
+    Meaning: домашня робота
+  - Language: Ukrainian
+    Meaning: домашнє завдання
+  - Language: English
+    Meaning: homework
+- Translations:
+  - Language: Ukrainian
+    Meaning: учень
+  - Language: English
+    Meaning: pupil
+  - Language: English
+    Meaning: student

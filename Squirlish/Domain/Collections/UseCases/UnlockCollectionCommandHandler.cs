@@ -17,8 +17,12 @@ public class UnlockCollectionCommandHandler : IRequestHandler<UnlockCollectionCo
 
     public async Task<Unit> Handle(UnlockCollectionCommand request, CancellationToken cancellationToken)
     {
-        _collectionsRepository.UnlockCollection(request.CollectionToUnlock.WordsCollectionId);
-        _inventory.Withdraw(InventoryItemType.Acorn, request.CollectionToUnlock.Price);
+        try
+        {
+            _inventory.Withdraw(InventoryItemType.Acorn, request.CollectionToUnlock.Price);
+            _collectionsRepository.UnlockCollection(request.CollectionToUnlock.WordsCollectionId);
+        }
+        catch (Exception e) { }
         return Unit.Value;
     }
 }

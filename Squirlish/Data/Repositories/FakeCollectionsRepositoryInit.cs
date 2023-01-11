@@ -12,7 +12,7 @@ public partial class FakeCollectionsRepository
         {
             new()
             {
-                Name = "Basic",
+                Name = "Базові відповіді",
                 IsOpened = true,
                 Words = new List<Word>
                 {
@@ -44,7 +44,7 @@ public partial class FakeCollectionsRepository
             },
             new()
             {
-                Name = "Family",
+                Name = "Сім'я",
                 IsOpened = false,
                 Words = new List<Word>
                 {

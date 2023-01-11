@@ -34,4 +34,16 @@ public class CollectionsRepository : BaseCollectionsRepository
         collection.IsOpened = true;
         _dbContext.SaveChanges();
     }
+
+    public override void Add(WordsCollection wordsCollection)
+    {
+        _dbContext.WordsCollections.Add(wordsCollection);
+        _dbContext.SaveChanges();
+    }
+
+    public override void AddWord(Word word)
+    {
+        _dbContext.Words.Add(word);
+        _dbContext.SaveChanges();
+    }
 }

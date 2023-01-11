@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Squirlish.Domain.Collections.Model"
+             xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Squirlish.Views.CollectionPage">
+    <ContentPage.Behaviors>
+        <behaviors:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding RefreshCommand}" />
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <FlexLayout 
+                BindableLayout.ItemsSource="{Binding Words}"
+                    Direction="Row"
+                    Wrap="Wrap"
+                    JustifyContent="SpaceEvenly"
+                    AlignItems="Center"
+                    Margin="0,0">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="models:Word">
+                    <Label Text="{Binding String}"></Label>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>
+        <Button Grid.Row="2" Text="Додати слово"  Command="{Binding AddWordCommand}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

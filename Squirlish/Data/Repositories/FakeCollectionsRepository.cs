@@ -20,4 +20,14 @@ public partial class FakeCollectionsRepository : BaseCollectionsRepository
         var collection = WordsCollections.First(x => x.WordsCollectionId == id);
         collection.IsOpened = true;
     }
+
+    public override void Add(WordsCollection wordsCollection)
+    {
+        WordsCollections.Add(wordsCollection);
+    }
+
+    public override void AddWord(Word word)
+    {
+        WordsCollections.First(c => c.WordsCollectionId == word.WordsCollectionId).Words.Add(word);
+    }
 }
